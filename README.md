@@ -1,7 +1,7 @@
 # Multi-Service Updater
 
 ![hass-custom](https://img.shields.io/badge/Home%20Assistant-Custom%20Component-blue)
-![version](https://img.shields.io/badge/version-1.1.1-blue)
+![version](https://img.shields.io/badge/version-1.1.2-blue)
 
 Une intégration personnalisée Home Assistant pour gérer la mise à jour de plusieurs services auto-hébergés (comme Immich, Vaultwarden, etc.) en utilisant le système natif `update` de Home Assistant.
 
