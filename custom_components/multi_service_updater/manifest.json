@@ -3,7 +3,7 @@
   "name": "Multi-Service Updater",
   "documentation": "https://github.com/Rem7474/multi_service_updater",
   "codeowners": ["@Rem7474"],
-  "version": "1.1.0",
+  "version": "1.1.1",
   "config_flow": true,
   "requirements": [],
   "iot_class": "local_push"
