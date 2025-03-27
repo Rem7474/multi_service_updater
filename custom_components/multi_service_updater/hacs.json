@@ -1,0 +1,7 @@
+{
+    "name": "Multi Service Updater",
+    "content_in_root": false,
+    "domains": ["multi_service_updater"],
+    "country": "FR",
+    "homeassistant": "2023.0.0"
+  }  
