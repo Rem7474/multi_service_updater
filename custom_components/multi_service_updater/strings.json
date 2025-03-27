@@ -1,0 +1,16 @@
+{
+  "title": "Multi-Service Updater",
+  "config": {
+    "step": {
+      "user": {
+        "data": {
+          "name": "Service name",
+          "sensor_current": "Sensor: current version",
+          "sensor_latest": "Sensor: latest version",
+          "update_url": "Update URL",
+          "api_token": "API token (optional)"
+        }
+      }
+    }
+  }
+}

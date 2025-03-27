@@ -1,0 +1,17 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configurer un service à surveiller",
+        "description": "Entrez les informations pour surveiller un service.",
+        "data": {
+          "name": "Nom du service",
+          "sensor_current": "Capteur de version actuelle",
+          "sensor_latest": "Capteur de dernière version",
+          "update_url": "URL d'appel de mise à jour",
+          "api_token": "Token API (facultatif)"
+        }
+      }
+    }
+  }
+}
