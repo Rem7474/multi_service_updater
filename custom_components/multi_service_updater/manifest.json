@@ -1,10 +1,11 @@
 {
   "domain": "multi_service_updater",
-  "name": "Multi-Service Updater",
+  "name": "Multi Service Updater",
+  "version": "1.1.3",
   "documentation": "https://github.com/Rem7474/multi_service_updater",
+  "dependencies": [],
   "codeowners": ["@Rem7474"],
-  "version": "1.1.2",
-  "config_flow": true,
   "requirements": [],
-  "iot_class": "local_push"
+  "config_flow": true,
+  "iot_class": "cloud_polling"
 }

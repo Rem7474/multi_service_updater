@@ -1,44 +1,49 @@
-# Multi-Service Updater
+# Multi Service Updater
 
-![hass-custom](https://img.shields.io/badge/Home%20Assistant-Custom%20Component-blue)
-![version](https://img.shields.io/badge/version-1.1.2-blue)
-
-Une intégration personnalisée Home Assistant pour gérer la mise à jour de plusieurs services auto-hébergés (comme Immich, Vaultwarden, etc.) en utilisant le système natif `update` de Home Assistant.
+Permet d'ajouter plusieurs entités `update` dans Home Assistant pour gérer la mise à jour de services externes via une requête API sécurisée.
 
 ## Fonctionnalités
 
-- Crée une entité `update` pour chaque service.
-- Utilise les capteurs existants (`sensor`) pour déterminer la version actuelle et la dernière version disponible.
-- Lance les mises à jour via une requête API sécurisée.
-- Supporte les tokens d’authentification pour l’API de mise à jour.
-- Interface graphique intégrée pour ajouter plusieurs services.
+- Suivi de la version actuelle (via un sensor)
+- Suivi de la dernière version disponible (via un autre sensor)
+- Déclenchement de la mise à jour via un appel API sécurisé
+- Ajout facile via l'interface graphique
 
 ## Installation
 
-1. Copiez le dossier `multi_service_updater` dans `config/custom_components/` de Home Assistant.
-2. Redémarrez Home Assistant.
-3. Ajoutez un service via `Paramètres > Intégrations > Ajouter une intégration > Multi-Service Updater`.
-4. Renseignez les champs :
-   - **Nom du service** (ex: `Immich`)
-   - **Capteur version actuelle** (ex: `sensor.immich_current_version`)
-   - **Capteur dernière version** (ex: `sensor.immich_latest_version`)
-   - **URL de mise à jour** (ex: `https://update.remcorp.fr/immich/update`)
-   - **Token API** *(optionnel)*
+### Depuis HACS
 
-## Exemple d'appel API attendu
+1. Dans HACS > Intégrations, cliquez sur les trois points > Dépôt personnalisé.
+2. Ajoutez `https://github.com/Rem7474/multi_service_updater` avec type `Intégration`.
+3. Recherchez ensuite `Multi Service Updater` dans HACS et installez-la.
 
-```bash
-curl -X POST https://update.remcorp.fr/immich/update -H "Authorization: Bearer secret"
-```
+### Manuellement
 
-## Mise à jour de l’intégration
+1. Téléchargez ce dépôt.
+2. Copiez le dossier `custom_components/multi_service_updater` dans `config/custom_components/`.
+3. Redémarrez Home Assistant.
 
-Téléchargez et exécutez ce script pour mettre à jour automatiquement :
-```bash
-bash <(curl -s https://raw.githubusercontent.com/Rem7474/multi_service_updater/main/install.sh)
-```
+## Configuration
 
-## Auteur
+1. Allez dans `Paramètres > Appareils et services > Ajouter une intégration`.
+2. Recherchez **Multi Service Updater**.
+3. Renseignez :
+   - Nom du service (`immich`, `vaultwarden`, etc.)
+   - ID de l'entité sensor de la version actuelle (ex : `sensor.immich_current_version`)
+   - ID de l'entité sensor de la dernière version (ex : `sensor.immich_latest_version`)
+   - URL d'appel de mise à jour (ex : `https://update.remcorp.fr/immich/update`)
+   - Token API (ex : `secret`)
 
-Développé par **Rem7474**  
-🔗 [github.com/Rem7474](https://github.com/Rem7474)
+## Exemple de sensor pour Immich
+
+```yaml
+sensor:
+  - platform: rest
+    name: "Immich Current Version"
+    resource: "https://immich.remcorp.fr/api/server/version"
+    method: GET
+    headers:
+      Accept: "application/json"
+    value_template: >
+      v{{ value_json.major }}.{{ value_json.minor }}.{{ value_json.patch }}
+    scan_interval: 300
